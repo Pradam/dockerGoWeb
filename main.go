@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 type gitHello struct {
@@ -15,7 +16,10 @@ type gitHello struct {
 func (gt gitHello) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	message := fmt.Sprintf(" Message comes from '%s' \n Blessed from the '%s'\n", gt.msg, gt.bless)
 	io.WriteString(w, message)
-	fmt.Fprintf(w, fmt.Sprintf(" URL is %v \n", r.URL.Path))
+	if r.URL.Path == "/god" {
+		values := r.URL.Query()
+		fmt.Fprintf(w, fmt.Sprintf(" God name: %s \n Traditional Name: %s \n", strings.Trim(values["name"][0], ""), strings.Trim(values["alias"][0], "")))
+	}
 }
 
 func main() {
