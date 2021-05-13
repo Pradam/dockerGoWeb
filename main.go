@@ -1,5 +1,7 @@
 package main
 
+//vscode://vscode.github-authentication/did-authenticate?windowid=1&code=c5eaad32ed0b4659969d&state=72c5ce73-68fb-4838-ace8-6b60370c3f74
+
 import (
 	"fmt"
 	"io"
